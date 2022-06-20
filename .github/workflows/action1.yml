@@ -48,4 +48,4 @@ jobs:
           subject: test from github action
           body: body example
           to: sungang09@huawei.com
-          from: GitHub Actions
+          from: sungsun@163.com
