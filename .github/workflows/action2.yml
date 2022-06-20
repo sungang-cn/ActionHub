@@ -36,6 +36,7 @@ jobs:
           from: <sun gang> icedustdream@gmail.com
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
+          content_type: text/html
           html_body: file://./weather.html
           # Optional unsigned/invalid certificates allowance:
           ignore_cert: true
