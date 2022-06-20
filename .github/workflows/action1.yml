@@ -45,6 +45,7 @@ jobs:
           server_address: smtp.qq.com
           server_port: 465
           username: ${{secrets.QQ_USERNAME}}
+          # 这里password不是密码，而应该是16位的验证码，参考https://service.mail.qq.com/cgi-bin/help?subtype=1&&no=1001256&&id=28
           password: ${{secrets.QQ_PASSWORD}}
           subject: Test from github action
           to: sungsun@163.com
