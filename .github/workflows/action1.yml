@@ -38,16 +38,42 @@ jobs:
           echo username is ${{secrets.USERNAME}}
           echo password is ${{secrets.PASSWORD}}
  
-      - name: Send email
-        uses: devellany/send-mailer@v1.0.2
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
         with:
-          host: smtp.google.com
-          account: ${{secrets.GMAIL_USERNAME}}
+          # Required mail server address:
+          server_address: smtp.gmail.com
+          # Required mail server port:
+          server_port: 465
+          # Optional (recommended): mail server username:
+          username: ${{secrets.GMAIL_USERNAME}}
+          # Optional (recommended) mail server password:
           password: ${{secrets.GMAIL_PASSWORD}}
-          sender: sungang
-          from: icedustdream@gmail.com
+          # Required mail subject:
+          subject: Github Actions job result
+          # Required recipients' addresses:
           to: sungsun@163.com
-          subject: mail title.
+          # Required sender full name (address can be skipped):
+          from: <sun gang> icedustdream@gmail.com
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          # Optional plain body:
           body: body example
-          contentType: text/html
-          # attachments: file://attachmets.json
+          # Optional HTML body read from file:
+          # html_body: file://README.html
+          # Optional carbon copy recipients:
+          # cc: kyloren@example.com,leia@example.com
+          # Optional blind carbon copy recipients:
+          # bcc: r2d2@example.com,hansolo@example.com
+          # Optional recipient of the email response:
+          # reply_to: luke@example.com
+          # Optional Message ID this message is replying to:
+          # in_reply_to: <random-luke@example.com>
+          # Optional unsigned/invalid certificates allowance:
+          ignore_cert: true
+          # Optional converting Markdown to HTML (set content_type to text/html too):
+          # convert_markdown: true
+          # Optional attachments:
+          # attachments: attachments.zip,git.diff,./dist/static/*.js
+          # Optional priority: 'high', 'normal' (default) or 'low'
+          # priority: low
