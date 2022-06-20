@@ -47,6 +47,5 @@ jobs:
           password: ${{secrets.NETEASE_PASSWORD}}
           subject: test from github action
           body: body example
-          to: mjguy@163.com
+          to: sungang09@huawei.com
           from: GitHub Actions
-          content_type: text/html
