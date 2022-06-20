@@ -4,76 +4,51 @@ name: send mail
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+  schedule:
+      # - cron: '*/5 * * * *'
+      # 表达式生成  https://crontab.guru/
+      # 此处是UTC时间 即北京时间 -8小时
+      - cron: '40 2,12 * * *'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # This workflow contains a single job called "JOB1"
+  JOB1:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          
-          echo username is ${{secrets.USERNAME}}
-          echo password is ${{secrets.PASSWORD}}
- 
-      - name: Send mail
+      - name: Send mail from gmail
         uses: dawidd6/action-send-mail@v3
         with:
-          # Required mail server address:
           server_address: smtp.gmail.com
-          # Required mail server port:
           server_port: 465
-          # Optional (recommended): mail server username:
           username: ${{secrets.GMAIL_USERNAME}}
-          # Optional (recommended) mail server password:
           password: ${{secrets.GMAIL_PASSWORD}}
-          # Required mail subject:
           subject: Github Actions job result
-          # Required recipients' addresses:
           to: sungsun@163.com
-          # Required sender full name (address can be skipped):
           from: <sun gang> icedustdream@gmail.com
           # Optional whether this connection use TLS (default is true if server_port is 465)
           secure: true
-          # Optional plain body:
           body: body example
-          # Optional HTML body read from file:
-          # html_body: file://README.html
-          # Optional carbon copy recipients:
-          # cc: kyloren@example.com,leia@example.com
-          # Optional blind carbon copy recipients:
-          # bcc: r2d2@example.com,hansolo@example.com
-          # Optional recipient of the email response:
-          # reply_to: luke@example.com
-          # Optional Message ID this message is replying to:
-          # in_reply_to: <random-luke@example.com>
           # Optional unsigned/invalid certificates allowance:
           ignore_cert: true
-          # Optional converting Markdown to HTML (set content_type to text/html too):
-          # convert_markdown: true
-          # Optional attachments:
-          # attachments: attachments.zip,git.diff,./dist/static/*.js
-          # Optional priority: 'high', 'normal' (default) or 'low'
-          # priority: low
+
+      - name: Send mail from 163
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.163.com
+          server_port: 465
+          username: ${{secrets.NETEASE_USERNAME}}
+          password: ${{secrets.NETEASE_PASSWORD}}
+          subject: Github Actions job result
+          to: mjguy@163.com
+          from: <sun gang> sungsun@163.com
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          body: body example
+          # Optional unsigned/invalid certificates allowance:
+          ignore_cert: true
