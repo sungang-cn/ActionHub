@@ -35,5 +35,5 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
           
-          echo ${{secrets.USERNAME}}
-          echo ${{secrets.PASSWORD}}
+          echo username is ${{secrets.USERNAME}}
+          echo password is ${{secrets.PASSWORD}}
