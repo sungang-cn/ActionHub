@@ -40,13 +40,13 @@ jobs:
           
 
       - name: Send email
-      - uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: smtp.qq.com
-        server_port: 465
-        username: ${{secrets.QQ_USERNAME}}
-        password: ${{secrets.QQ_PASSWORD}}
-        subject: Test from github action
-        to: sungsun@163.com
-        from: abc
-        body: body example
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.qq.com
+          server_port: 465
+          username: ${{secrets.QQ_USERNAME}}
+          password: ${{secrets.QQ_PASSWORD}}
+          subject: Test from github action
+          to: sungsun@163.com
+          from: abc
+          body: body example
