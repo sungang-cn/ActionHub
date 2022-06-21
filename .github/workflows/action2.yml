@@ -6,6 +6,10 @@ name: send weather mail 2
 on:
   schedule:
       # - cron: '*/5 * * * *'
+      # minute hour day(month) month day(week)
+      # example:
+      # 5 4 23 1,2 sat
+      # “At 04:05 on day-of-month 23 and on Saturday in January and February.”
       # 表达式生成  https://crontab.guru/
       # 此处是UTC时间 即北京时间 -8小时
       - cron: '40 2,12 * * *'
