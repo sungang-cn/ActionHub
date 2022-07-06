@@ -12,7 +12,7 @@ on:
       # “At 04:05 on day-of-month 23 and on Saturday in January and February.”
       # 表达式生成  https://crontab.guru/
       # 此处是UTC时间 即北京时间 -8小时
-      - cron: '40 2,12 * * *'
+      - cron: '40 1 * * *'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
