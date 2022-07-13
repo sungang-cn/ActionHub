@@ -27,6 +27,8 @@ jobs:
     steps:
       - name: get weather html
         run: curl -o weather.html https://restapi.amap.com/v3/weather/weatherInfo?city=110101&key=${{secrets.GAODE_API_KEY}}
+        
+      - name: cat printf
         run: cat weather.html
         
       - name: Send mail from gmail
