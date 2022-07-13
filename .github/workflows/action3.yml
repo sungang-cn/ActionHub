@@ -1,0 +1,45 @@
+# This is a basic workflow to help you get started with Actions
+
+name: send weather mail 3 from 高德查询
+
+# Controls when the workflow will run
+on:
+  schedule:
+      # - cron: '*/5 * * * *'
+      # minute hour day(month) month day(week)
+      # example:
+      # 5 4 23 1,2 sat
+      # “At 04:05 on day-of-month 23 and on Saturday in January and February.”
+      # 表达式生成  https://crontab.guru/
+      # 此处是UTC时间 即北京时间 -8小时
+      - cron: '40 1 * * *'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "JOB1"
+  JOB1:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: get weather html
+        run: curl -o weather.html https://restapi.amap.com/v3/weather/weatherInfo?city=110101&key=${{secrets.GAODE_API_KEY}}
+        
+      - name: Send mail from gmail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.GMAIL_USERNAME}}
+          password: ${{secrets.GMAIL_PASSWORD}}
+          subject: Github Actions job result
+          to: sungsun@163.com
+          from: <sun gang> icedustdream@gmail.com
+          # Optional whether this connection use TLS (default is true if server_port is 465)
+          secure: true
+          html_body: file://./weather.html
+          # Optional unsigned/invalid certificates allowance:
+          ignore_cert: true
